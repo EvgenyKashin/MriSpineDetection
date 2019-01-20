@@ -4,11 +4,12 @@ import xml.etree.ElementTree as ET
 import pickle
 
 def parse_voc_annotation(ann_dir, img_dir, cache_name, labels=[]):
-    if os.path.exists(cache_name):
-        with open(cache_name, 'rb') as handle:
-            cache = pickle.load(handle)
-        all_insts, seen_labels = cache['all_insts'], cache['seen_labels']
-    else:
+    # if os.path.exists(cache_name):
+    #     with open(cache_name, 'rb') as handle:
+    #         cache = pickle.load(handle)
+    #     all_insts, seen_labels = cache['all_insts'], cache['seen_labels']
+    # else:
+    if True:
         all_insts = []
         seen_labels = {}
         
@@ -21,7 +22,6 @@ def parse_voc_annotation(ann_dir, img_dir, cache_name, labels=[]):
                 print(e)
                 print('Ignore this bad annotation: ' + ann_dir + ann)
                 continue
-            
             for elem in tree.iter():
                 if 'filename' in elem.tag:
                     img['filename'] = img_dir + elem.text
@@ -31,10 +31,11 @@ def parse_voc_annotation(ann_dir, img_dir, cache_name, labels=[]):
                     img['height'] = int(elem.text)
                 if 'object' in elem.tag or 'part' in elem.tag:
                     obj = {}
-                    
+
                     for attr in list(elem):
                         if 'name' in attr.tag:
                             obj['name'] = attr.text
+                            # print(labels)
 
                             if obj['name'] in seen_labels:
                                 seen_labels[obj['name']] += 1
@@ -56,10 +57,11 @@ def parse_voc_annotation(ann_dir, img_dir, cache_name, labels=[]):
                                     obj['xmax'] = int(round(float(dim.text)))
                                 if 'ymax' in dim.tag:
                                     obj['ymax'] = int(round(float(dim.text)))
-
+            # print(img)
             if len(img['object']) > 0:
                 all_insts += [img]
 
+        # print(len(all_insts), '!!!!!!')
         cache = {'all_insts': all_insts, 'seen_labels': seen_labels}
         with open(cache_name, 'wb') as handle:
             pickle.dump(cache, handle, protocol=pickle.HIGHEST_PROTOCOL)    
