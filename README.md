@@ -49,6 +49,6 @@ There is some bug in calculating metrics.
 - Add more data augmentation.
 - Do oversampling of smaller classes.
 - Make predict loop in different script.
-
+- Hide all area with text in images to prevent overfitting.
 ## References
 - https://github.com/experiencor/keras-yolo3 - yolo v3 model training.
