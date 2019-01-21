@@ -14,10 +14,15 @@ Yolo v3 model was trained on this data. Loss plot:
 <img src="imgs/loss.png">
 
 Result of working model on test data:
+
 <img src="imgs/img1.png">
+
 <img src="imgs/img2.png">
+
 <img src="imgs/img3.png">
+
 Some times it fails:
+
 <img src="imgs/img4.png">
 
 Metric on this test set for each class(bug):
@@ -46,4 +51,4 @@ There is some bug in calculating metrics.
 - Make predict loop in different script.
 
 ## References
-- https://github.com/experiencor/keras-yolo3 - yolo v3 model training
+- https://github.com/experiencor/keras-yolo3 - yolo v3 model training.
