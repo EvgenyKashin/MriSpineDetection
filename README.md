@@ -1,6 +1,8 @@
 
-## Mri spine detection
-Test task for **Care Mentor AI**. Detection of intervertebral disc pathologies on mri spine.
+# Mri spine detection
+Detection of intervertebral disc pathologies on mri spine with YOLOv3. 
+## Data
+356 annotated mri spine images (visualized), 2694 objects. Mostly has (384, 384) shape.
 ## Using
 - preprocessing.py - data capturing, train-val-test splitting, converting to voc format.
 From data selected only "Visualized (you can mark)". Dropped rows with rare classes (only 2). Train-val-test split based on the most rare label on image - greater index mean more rare label. 
@@ -50,5 +52,6 @@ There is some bug in calculating metrics.
 - Do oversampling of smaller classes.
 - Make predict loop in different script.
 - Hide all area with text in images to prevent overfitting.
+- Adjust object detection threshold to decrease amount of not detected objects.
 ## References
-- https://github.com/experiencor/keras-yolo3 - yolo v3 model training.
+- https://github.com/experiencor/keras-yolo3 - YOLOv3 model training.
